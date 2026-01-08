@@ -1,0 +1,47 @@
+import { MusicTrack, Album, Sermon, Event, GalleryItem, Scripture, SocialLink } from '@/app/types';
+
+// Template file - Copy this to data.ts and fill in your actual data
+// This file is gitignored to keep your data private
+
+export const musicTracks: MusicTrack[] = [
+  // Add your music tracks here
+];
+
+export const albums: Album[] = [
+  // Add your albums here
+];
+
+export const sermons: Sermon[] = [
+  // Add your sermons here
+];
+
+export const events: Event[] = [
+  // Add your events here
+];
+
+export const galleryItems: GalleryItem[] = [
+  // Add your gallery items here
+];
+
+export const scriptures: Scripture[] = [
+  {
+    verse: 'For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.',
+    reference: 'Jeremiah 29:11',
+  },
+  {
+    verse: 'I can do all things through Christ who strengthens me.',
+    reference: 'Philippians 4:13',
+  },
+  {
+    verse: 'Trust in the Lord with all your heart and lean not on your own understanding.',
+    reference: 'Proverbs 3:5',
+  },
+];
+
+export const socialLinks: SocialLink[] = [
+  // Add your social media links here
+  // Example: { platform: 'Facebook', url: 'https://facebook.com/yourpage', icon: 'facebook' },
+];
+
+export const sermonTopics = ['All', 'Faith', 'Prayer', 'Purpose', 'Encouragement', 'Worship'];
+

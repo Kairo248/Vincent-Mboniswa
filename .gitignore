@@ -39,3 +39,19 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# data files - keep your content private
+/app/lib/data.ts
+/public/audio/
+/public/images/
+/public/videos/
+/data/
+# Media file extensions (only in public directories)
+/public/**/*.mp3
+/public/**/*.mp4
+/public/**/*.MP4
+/public/**/*.jpg
+/public/**/*.jpeg
+/public/**/*.png
+/public/**/*.gif
+/public/**/*.webp
