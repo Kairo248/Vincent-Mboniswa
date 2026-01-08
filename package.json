@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prebuild": "node -e \"const fs = require('fs'); const path = require('path'); const dataPath = path.join(__dirname, 'app/lib/data.ts'); const examplePath = path.join(__dirname, 'app/lib/data.example.ts'); if (!fs.existsSync(dataPath) && fs.existsSync(examplePath)) { fs.copyFileSync(examplePath, dataPath); console.log('Copied data.example.ts to data.ts'); }\"",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
