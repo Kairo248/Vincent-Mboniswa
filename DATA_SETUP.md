@@ -24,10 +24,12 @@ This project uses a template-based approach to keep your data private and out of
 
 The following files and directories are excluded from git:
 - `app/lib/data.ts` - Your actual data file (gitignored but required for builds)
-- `public/audio/` - All audio files
-- `public/images/` - All image files
-- `public/videos/` - All video files
 - `data/` - Any additional data directory
+
+**Note:** Media files (`public/audio/`, `public/images/`, `public/videos/`) are NOT gitignored by default because they need to be deployed for the site to work. If you need to keep specific media files private, you can:
+1. Use a CDN or external storage (AWS S3, Cloudinary, etc.)
+2. Add specific file patterns to `.gitignore`
+3. Upload files separately during deployment
 
 ## Build Process
 

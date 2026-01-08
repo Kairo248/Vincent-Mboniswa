@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  // Optimize video and audio loading
+  // Optimize video, audio, and image loading
   async headers() {
     return [
       {
@@ -24,6 +24,15 @@ const nextConfig: NextConfig = {
           {
             key: 'Content-Type',
             value: 'audio/mpeg',
+          },
+        ],
+      },
+      {
+        source: '/images/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
           },
         ],
       },
