@@ -41,6 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 # data files - keep your content private
+# Note: data.ts.example is tracked, but data.ts is ignored
 /app/lib/data.ts
 /public/audio/
 /public/images/

@@ -4,9 +4,9 @@ This project uses a template-based approach to keep your data private and out of
 
 ## Setup Instructions
 
-1. **Copy the template file:**
+1. **Copy the example file:**
    ```bash
-   cp app/lib/data.ts.template app/lib/data.ts
+   cp app/lib/data.ts.example app/lib/data.ts
    ```
 
 2. **Add your media files:**
@@ -22,13 +22,16 @@ This project uses a template-based approach to keep your data private and out of
 ## What's Gitignored
 
 The following files and directories are excluded from git:
-- `app/lib/data.ts` - Your actual data file
+- `app/lib/data.ts` - Your actual data file (must exist locally for builds to work)
 - `public/audio/` - All audio files
 - `public/images/` - All image files
 - `public/videos/` - All video files
 - `data/` - Any additional data directory
 
-## Template File
+## Important Notes
 
-The `data.ts.template` file is kept in version control as a reference for the data structure. Your actual `data.ts` file with real content will be gitignored.
+- **The `data.ts` file MUST exist locally** for the build to work, even though it's gitignored
+- The `data.ts.example` file is tracked in git as a reference
+- If you get "module not found" errors, ensure `data.ts` exists in `app/lib/`
+- Clear Next.js cache if needed: `rm -rf .next` (or delete `.next` folder)
 
