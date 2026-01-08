@@ -40,10 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# data files - keep your content private
-# Note: data.example.ts is tracked, but data.ts is ignored
-/app/lib/data.ts
-!/app/lib/data.example.ts
+
 
 # Media files are NOT gitignored - they need to be deployed
 # If you want to keep media files private, use a CDN or external storage instead
@@ -54,5 +51,3 @@ next-env.d.ts
 # Optional: If you want to gitignore specific sensitive media files, uncomment:
 # /public/images/sensitive-*.jpg
 # /public/videos/private-*.mp4
-
-/data/
