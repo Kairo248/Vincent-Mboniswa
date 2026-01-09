@@ -71,8 +71,6 @@ const nextConfig: NextConfig = {
   compress: true,
   // Enable React strict mode for better performance
   reactStrictMode: true,
-  // Optimize font loading
-  optimizeFonts: true,
   // Power optimizations
   poweredByHeader: false,
 };
