@@ -32,7 +32,9 @@ export default function GalleryGrid({ items, className }: GalleryGridProps) {
               src={item.thumbnail}
               alt={item.title || 'Gallery item'}
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
               className="object-cover transition-transform duration-500 group-hover:scale-110"
+              loading="lazy"
             />
             {item.type === 'video' && (
               <div className="absolute inset-0 flex items-center justify-center z-20">
@@ -84,7 +86,9 @@ export default function GalleryGrid({ items, className }: GalleryGridProps) {
                   alt={selectedItem.title || 'Gallery image'}
                   width={1200}
                   height={800}
+                  sizes="(max-width: 1200px) 100vw, 1200px"
                   className="w-full h-auto rounded-lg"
+                  priority
                 />
               ) : (
                 <video

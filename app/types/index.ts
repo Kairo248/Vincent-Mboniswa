@@ -24,6 +24,8 @@ export interface Album {
   releaseDate: string;
   tracks: MusicTrack[];
   description?: string;
+  comingSoon?: boolean;
+  usbOnly?: boolean;
 }
 
 export interface Sermon {

@@ -46,7 +46,7 @@ export default function IntroSection() {
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  priority
+                  loading="eager"
                   onError={() => setImageError(true)}
                 />
                 {/* Gradient overlay */}

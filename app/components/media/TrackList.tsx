@@ -86,7 +86,7 @@ export default function TrackList({ tracks, showAlbumArt = false }: TrackListPro
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: index * 0.05, duration: 0.4 }}
-            className="group relative flex items-center gap-4 p-4 rounded-lg hover:bg-white/5 transition-all duration-200"
+            className="group relative flex items-center gap-4 p-4 rounded-lg hover:bg-blue-500/10 hover:border-blue-400/20 border border-transparent transition-all duration-200"
           >
             {/* Track Number / Play Button */}
             <div className="flex-shrink-0 w-10 flex items-center justify-center">
@@ -95,7 +95,7 @@ export default function TrackList({ tracks, showAlbumArt = false }: TrackListPro
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   onClick={() => togglePlay(track.id)}
-                  className="w-10 h-10 rounded-full bg-gold text-black flex items-center justify-center hover:bg-gold/90 transition-colors"
+                  className="w-10 h-10 rounded-full bg-blue-400 text-white flex items-center justify-center hover:bg-blue-300 transition-colors shadow-lg shadow-blue-400/30"
                   aria-label="Pause"
                 >
                   <Pause size={18} fill="currentColor" />
@@ -105,14 +105,14 @@ export default function TrackList({ tracks, showAlbumArt = false }: TrackListPro
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   onClick={() => togglePlay(track.id)}
-                  className="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-gold hover:text-black transition-all opacity-0 group-hover:opacity-100"
+                  className="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-blue-400 hover:text-white transition-all opacity-0 group-hover:opacity-100 border border-blue-400/30"
                   aria-label="Play"
                 >
                   <Play size={18} fill="currentColor" className="ml-0.5" />
                 </motion.button>
               )}
               {!isPlaying && (
-                <span className="text-white/40 text-sm font-light group-hover:opacity-0 transition-opacity absolute">
+                <span className="text-blue-200/50 text-sm font-light group-hover:opacity-0 transition-opacity absolute">
                   {String(index + 1).padStart(2, '0')}
                 </span>
               )}
@@ -133,18 +133,18 @@ export default function TrackList({ tracks, showAlbumArt = false }: TrackListPro
 
             {/* Track Info */}
             <div className="flex-1 min-w-0">
-              <h4 className="text-white font-medium text-base truncate group-hover:text-gold transition-colors">
+              <h4 className="text-white font-medium text-base truncate group-hover:text-blue-300 transition-colors">
                 {track.title}
               </h4>
               {track.album && (
-                <p className="text-white/50 text-sm truncate font-light">
+                <p className="text-white/60 text-sm truncate font-light">
                   {track.album}
                 </p>
               )}
             </div>
 
             {/* Duration */}
-            <div className="flex-shrink-0 text-white/40 text-sm font-light">
+            <div className="flex-shrink-0 text-blue-200/50 text-sm font-light">
               1:00
             </div>
 

@@ -54,6 +54,7 @@ export default function EventCard({ event, index = 0, className }: EventCardProp
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover"
+              loading="lazy"
               onError={() => setImageError(true)}
             />
             {/* Gradient overlay */}

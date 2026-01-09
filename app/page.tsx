@@ -1,23 +1,35 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import HeroSection from '@/app/components/sections/HeroSection';
-import IntroSection from '@/app/components/sections/IntroSection';
-import FeaturedMusicSection from '@/app/components/sections/FeaturedMusicSection';
-import UpcomingEventsSection from '@/app/components/sections/UpcomingEventsSection';
+
+// Dynamically import below-the-fold sections for code splitting and lazy loading
+const IntroSection = dynamic(() => import('@/app/components/sections/IntroSection'), {
+  loading: () => <div className="min-h-[400px]" />,
+  ssr: true,
+});
+
+const FeaturedMusicSection = dynamic(() => import('@/app/components/sections/FeaturedMusicSection'), {
+  loading: () => <div className="min-h-[400px]" />,
+  ssr: true,
+});
+
+const UpcomingEventsSection = dynamic(() => import('@/app/components/sections/UpcomingEventsSection'), {
+  loading: () => <div className="min-h-[400px]" />,
+  ssr: true,
+});
 
 export default function Home() {
   return (
     <main className="min-h-screen text-white relative z-10">
-      {/* Hero Section */}
+      {/* Hero Section - Load immediately */}
       <HeroSection />
 
-      {/* Intro Section */}
+      {/* Below-the-fold sections - Loaded dynamically */}
       <IntroSection />
 
-      {/* Featured Music Section */}
       <FeaturedMusicSection />
 
-      {/* Upcoming Events Section */}
       <UpcomingEventsSection />
     </main>
   );
