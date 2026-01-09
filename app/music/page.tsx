@@ -41,7 +41,7 @@ export default function MusicPage() {
     // For coming soon albums, open WhatsApp to inquire about USB
     if (album?.comingSoon) {
       // Convert South African number (0734368007) to international format (2734368007)
-      const phoneNumber = '2734368007'; // Remove leading 0 and add country code 27
+      const phoneNumber = '27734368007'; // Add country code 27 and remove leading 0
       const message = encodeURIComponent(`Hello! I'm interested in purchasing Hymns & Melodies Volume 3 on USB (R300). Could you please provide more information?`);
       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
       window.open(whatsappUrl, '_blank');
@@ -157,117 +157,162 @@ export default function MusicPage() {
                 </motion.div>
               )}
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="space-y-8">
                 {albums.map((album, index) => {
                   const isSelected = selectedAlbum === album.id;
                   const isComingSoon = album.comingSoon;
                   const isUsbOnly = album.usbOnly;
                   return (
-                    <FadeIn key={album.id} delay={index * 0.1}>
-                      <motion.div
-                        className={`group ${isComingSoon ? 'cursor-pointer' : 'cursor-pointer'}`}
-                        onClick={() => handleAlbumClick(album.id)}
-                        whileHover={isComingSoon ? { y: -3, scale: 1.02 } : { y: -5 }}
-                        animate={isSelected ? { scale: 0.98 } : { scale: 1 }}
-                      >
-                        <div className={`relative aspect-square rounded-2xl overflow-hidden mb-4 bg-white/5 backdrop-blur-sm border transition-all shadow-lg ${
-                          isSelected 
-                            ? 'border-blue-400/60 bg-blue-500/20 shadow-blue-500/30' 
-                            : isComingSoon
-                            ? 'border-blue-300/30 bg-blue-500/10 shadow-blue-500/20 opacity-75'
-                            : 'border-blue-400/20 group-hover:border-blue-300/40 group-hover:bg-white/10 shadow-blue-500/10'
-                        }`}>
-                          <Image
-                            src={album.coverImage}
-                            alt={album.title}
-                            fill
-                            className={`object-cover transition-transform duration-300 ${
-                              isComingSoon ? '' : 'group-hover:scale-105'
-                            }`}
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-blue-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                          {/* Blue glow on hover or when selected */}
-                          <div className={`absolute inset-0 bg-blue-400/10 blur-xl transition-opacity ${
-                            isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-                          }`} />
-                          
-                          {/* Coming Soon Badge */}
-                          {isComingSoon && (
-                            <motion.div
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-gradient-to-r from-blue-500/90 to-blue-400/90 backdrop-blur-md border border-blue-300/50 flex items-center gap-2 shadow-lg"
-                            >
-                              <Clock size={14} className="text-white" />
-                              <span className="text-white text-xs font-semibold">Coming Soon</span>
-                            </motion.div>
-                          )}
-
-                          {/* USB Only Badge */}
-                          {isUsbOnly && (
-                            <motion.div
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              transition={{ delay: 0.1 }}
-                              className="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-gradient-to-r from-blue-600/90 to-blue-500/90 backdrop-blur-md border border-blue-300/50 flex items-center gap-2 shadow-lg"
-                            >
-                              <Usb size={14} className="text-white" />
-                              <span className="text-white text-xs font-semibold">USB Only</span>
-                            </motion.div>
-                          )}
-
-                          {/* Selected indicator */}
-                          {isSelected && !isComingSoon && (
-                            <motion.div
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              className="absolute top-4 right-4 w-10 h-10 rounded-full bg-blue-400/90 backdrop-blur-md flex items-center justify-center border border-blue-300/50"
-                            >
-                              <ChevronDown size={20} className="text-white" />
-                            </motion.div>
-                          )}
-
-                          {/* Coming Soon Overlay */}
-                          {isComingSoon && (
-                            <motion.div 
-                              className="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex items-center justify-center group-hover:bg-black/30 transition-colors"
-                              whileHover={{ scale: 1.02 }}
-                            >
-                              <div className="text-center px-4">
+                    <div key={album.id} className="w-full">
+                      <FadeIn delay={index * 0.1}>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+                          {/* Album Card */}
+                          <motion.div
+                            className={`group ${isComingSoon ? 'cursor-pointer' : 'cursor-pointer'}`}
+                            onClick={() => handleAlbumClick(album.id)}
+                            whileHover={isComingSoon ? { y: -3, scale: 1.02 } : { y: -5 }}
+                            animate={isSelected ? { scale: 0.98 } : { scale: 1 }}
+                          >
+                            <div className={`relative aspect-square rounded-2xl overflow-hidden mb-4 bg-white/5 backdrop-blur-sm border transition-all shadow-lg ${
+                              isSelected 
+                                ? 'border-blue-400/60 bg-blue-500/20 shadow-blue-500/30' 
+                                : isComingSoon
+                                ? 'border-blue-300/30 bg-blue-500/10 shadow-blue-500/20 opacity-75'
+                                : 'border-blue-400/20 group-hover:border-blue-300/40 group-hover:bg-white/10 shadow-blue-500/10'
+                            }`}>
+                              <Image
+                                src={album.coverImage}
+                                alt={album.title}
+                                fill
+                                className={`object-cover transition-transform duration-300 ${
+                                  isComingSoon ? '' : 'group-hover:scale-105'
+                                }`}
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-blue-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                              {/* Blue glow on hover or when selected */}
+                              <div className={`absolute inset-0 bg-blue-400/10 blur-xl transition-opacity ${
+                                isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                              }`} />
+                              
+                              {/* Coming Soon Badge */}
+                              {isComingSoon && (
                                 <motion.div
-                                  animate={{ scale: [1, 1.1, 1] }}
-                                  transition={{ duration: 2, repeat: Infinity }}
-                                  className="mb-2 flex justify-center"
+                                  initial={{ opacity: 0, scale: 0.8 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-gradient-to-r from-blue-500/90 to-blue-400/90 backdrop-blur-md border border-blue-300/50 flex items-center gap-2 shadow-lg"
                                 >
-                                  <MessageCircle size={24} className="text-blue-300" />
+                                  <Clock size={14} className="text-white" />
+                                  <span className="text-white text-xs font-semibold">Coming Soon</span>
                                 </motion.div>
-                                <p className="text-white font-semibold text-sm mb-1">Available on USB</p>
-                                <p className="text-blue-300 text-xs font-medium mb-1">R300</p>
-                                <p className="text-blue-300 text-xs font-medium">Click to order via WhatsApp</p>
-                              </div>
-                            </motion.div>
+                              )}
+
+                              {/* USB Only Badge */}
+                              {isUsbOnly && (
+                                <motion.div
+                                  initial={{ opacity: 0, scale: 0.8 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  transition={{ delay: 0.1 }}
+                                  className="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-gradient-to-r from-blue-600/90 to-blue-500/90 backdrop-blur-md border border-blue-300/50 flex items-center gap-2 shadow-lg"
+                                >
+                                  <Usb size={14} className="text-white" />
+                                  <span className="text-white text-xs font-semibold">USB Only</span>
+                                </motion.div>
+                              )}
+
+                              {/* Selected indicator */}
+                              {isSelected && !isComingSoon && (
+                                <motion.div
+                                  initial={{ opacity: 0, scale: 0.8 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-blue-400/90 backdrop-blur-md flex items-center justify-center border border-blue-300/50"
+                                >
+                                  <ChevronDown size={20} className="text-white" />
+                                </motion.div>
+                              )}
+
+                              {/* Coming Soon Overlay */}
+                              {isComingSoon && (
+                                <motion.div 
+                                  className="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex items-center justify-center group-hover:bg-black/30 transition-colors"
+                                  whileHover={{ scale: 1.02 }}
+                                >
+                                  <div className="text-center px-4">
+                                    <motion.div
+                                      animate={{ scale: [1, 1.1, 1] }}
+                                      transition={{ duration: 2, repeat: Infinity }}
+                                      className="mb-2 flex justify-center"
+                                    >
+                                      <MessageCircle size={24} className="text-blue-300" />
+                                    </motion.div>
+                                    <p className="text-white font-semibold text-sm mb-1">Available on USB</p>
+                                    <p className="text-blue-300 text-xs font-medium mb-1">R300</p>
+                                    <p className="text-blue-300 text-xs font-medium">Click to order via WhatsApp</p>
+                                  </div>
+                                </motion.div>
+                              )}
+                            </div>
+                            <div>
+                              <h3 className={`font-medium text-lg mb-1 transition-colors ${
+                                isSelected ? 'text-blue-300' : isComingSoon ? 'text-blue-200/80' : 'text-white group-hover:text-blue-300'
+                              }`}>
+                                {album.title}
+                              </h3>
+                              <p className="text-white/70 text-sm font-light mb-2">{album.artist}</p>
+                              <p className="text-white/50 text-xs font-light">
+                                {isComingSoon ? (
+                                  <span className="flex items-center gap-1">
+                                    <Clock size={12} />
+                                    Coming Soon
+                                  </span>
+                                ) : (
+                                  `${album.tracks.length} tracks • ${new Date(album.releaseDate).getFullYear()}`
+                                )}
+                              </p>
+                            </div>
+                          </motion.div>
+
+                          {/* Album Tracks - Appears below the album card when selected */}
+                          {isSelected && !isComingSoon && (
+                            <AnimatePresence>
+                              <motion.div
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -20 }}
+                                transition={{ duration: 0.3 }}
+                                className="md:col-span-2 lg:col-span-2"
+                              >
+                                <div className="relative bg-black/40 backdrop-blur-xl rounded-2xl p-6 border border-blue-400/20">
+                                  {/* Close Button */}
+                                  <motion.button
+                                    onClick={closeAlbum}
+                                    className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 border border-blue-400/30 flex items-center justify-center transition-all backdrop-blur-sm z-10"
+                                    whileHover={{ scale: 1.1, rotate: 90 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    aria-label="Close album"
+                                  >
+                                    <X size={16} className="text-white" />
+                                  </motion.button>
+
+                                  {/* Track List Header */}
+                                  <div className="border-b border-blue-400/20 pb-3 mb-4">
+                                    <div className="flex items-center gap-4 text-blue-200/60 text-xs font-medium uppercase tracking-wider">
+                                      <div className="w-10 text-center">#</div>
+                                      <div className="flex-1">Title</div>
+                                      <div className="w-16 text-right">Time</div>
+                                    </div>
+                                  </div>
+
+                                  {/* Track List */}
+                                  <div className="bg-black/20 backdrop-blur-sm rounded-xl p-4 border border-blue-400/10">
+                                    <TrackList tracks={album.tracks} />
+                                  </div>
+                                </div>
+                              </motion.div>
+                            </AnimatePresence>
                           )}
                         </div>
-                        <div>
-                          <h3 className={`font-medium text-lg mb-1 transition-colors ${
-                            isSelected ? 'text-blue-300' : isComingSoon ? 'text-blue-200/80' : 'text-white group-hover:text-blue-300'
-                          }`}>
-                            {album.title}
-                          </h3>
-                          <p className="text-white/70 text-sm font-light mb-2">{album.artist}</p>
-                          <p className="text-white/50 text-xs font-light">
-                            {isComingSoon ? (
-                              <span className="flex items-center gap-1">
-                                <Clock size={12} />
-                                Coming Soon
-                              </span>
-                            ) : (
-                              `${album.tracks.length} tracks • ${new Date(album.releaseDate).getFullYear()}`
-                            )}
-                          </p>
-                        </div>
-                      </motion.div>
-                    </FadeIn>
+                      </FadeIn>
+                    </div>
                   );
                 })}
               </div>
@@ -275,82 +320,6 @@ export default function MusicPage() {
           </Section>
         )}
 
-        {/* Selected Album Tracks */}
-        <AnimatePresence mode="wait">
-          {currentAlbum && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
-            >
-              <Section id="album-tracks" variant="dark">
-                <div className="max-w-5xl mx-auto">
-                  <SlideUp>
-                    <div className="relative flex items-center gap-6 mb-8 p-6 rounded-2xl bg-black/40 backdrop-blur-xl border border-blue-400/20">
-                      {/* Close Button */}
-                      <motion.button
-                        onClick={closeAlbum}
-                        className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-blue-400/30 flex items-center justify-center transition-all backdrop-blur-sm z-10"
-                        whileHover={{ scale: 1.1, rotate: 90 }}
-                        whileTap={{ scale: 0.9 }}
-                        aria-label="Close album"
-                      >
-                        <X size={18} className="text-white" />
-                      </motion.button>
-
-                      <div className="relative w-32 h-32 rounded-2xl overflow-hidden flex-shrink-0 bg-white/5 border border-blue-400/20">
-                        <Image
-                          src={currentAlbum.coverImage}
-                          alt={currentAlbum.title}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <div className="flex-1 pr-12">
-                        <Heading 
-                          level={2} 
-                          size="lg" 
-                          className="mb-2 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent"
-                        >
-                          {currentAlbum.title}
-                        </Heading>
-                        <p className="text-white/70 text-sm font-light mb-1">
-                          {currentAlbum.artist}
-                        </p>
-                        <p className="text-white/50 text-xs font-light">
-                          {currentAlbum.tracks.length} tracks • {new Date(currentAlbum.releaseDate).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                          })}
-                        </p>
-                      </div>
-                    </div>
-                  </SlideUp>
-
-                  {/* Track List Header */}
-                  <div className="border-b border-blue-400/20 pb-3 mb-2 px-4">
-                    <div className="flex items-center gap-4 text-blue-200/60 text-xs font-medium uppercase tracking-wider">
-                      <div className="w-10 text-center">#</div>
-                      <div className="flex-1">Title</div>
-                      <div className="w-16 text-right">Time</div>
-                    </div>
-                  </div>
-
-                  {/* Track List */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="bg-black/20 backdrop-blur-sm rounded-xl p-4 border border-blue-400/10"
-                  >
-                    <TrackList tracks={currentAlbum.tracks} />
-                  </motion.div>
-                </div>
-              </Section>
-            </motion.div>
-          )}
-        </AnimatePresence>
 
         {/* Latest Tracks Section */}
         <Section id="latest-tracks">
